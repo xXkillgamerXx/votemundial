@@ -40,13 +40,27 @@ class HomeController extends Controller
         return view('votations.show', compact('votation'));
     }
 
-    public function like ($id){
+    public function like ($id)
+    {
+        $userId = auth()->user()->id;
 
-       return Vote::firstOrCreate ([
+        // Verificar si el usuario ya ha votado por esta opción
+        $existingVote = Vote::where('voting_option_id', $id)
+            ->where('user_id', $userId)
+            ->first();
+
+        if ($existingVote) {
+            // El usuario ya ha votado por esta opción, puedes mostrar un mensaje de error o manejarlo como desees
+            return response()->json(['error' => 'Ya has votado por esta opción.'], 400);
+        }
+
+        // Si el usuario no ha votado por esta opción, crea un nuevo voto
+        $vote = Vote::create([
             'voting_option_id' => $id,
-            'user_id' => auth()->user()->id
+            'user_id' => $userId
         ]);
 
-
+        // El voto se ha registrado exitosamente
+        return response()->json(['message' => 'Voto registrado.'], 200);
     }
 }

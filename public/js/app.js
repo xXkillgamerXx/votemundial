@@ -5391,6 +5391,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -5404,18 +5415,23 @@ __webpack_require__.r(__webpack_exports__);
     return {
       option: null,
       show: false,
+      showVoting: false,
+      message: '',
       isLogin: false,
       position: 0
     };
   },
   methods: {
     like: function like() {
+      var _this = this;
       console.log('like');
       axios.post('/votations/like/' + this.option.id).then(function (response) {
         console.log(response.data);
         location.reload();
       })["catch"](function (error) {
         console.error(error);
+        _this.showVoting = true;
+        _this.message = 'Ya has votado por esta opción.';
       });
     },
     handleLike: function handleLike(data, position) {
@@ -5426,6 +5442,10 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.isLogin = true;
       }
+    },
+    close: function close() {
+      this.show = false;
+      this.showVoting = false;
     }
   }
 });
@@ -50399,6 +50419,31 @@ var render = function () {
     _vm._v(" "),
     _vm.isLogin
       ? _c("div", { staticClass: "modal-confirm" }, [_vm._m(0)])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.showVoting
+      ? _c("div", { staticClass: "modal-confirm" }, [
+          _c("div", { staticClass: "div-block-15" }, [
+            _c("div", [
+              _c("div", { staticClass: "text-block-11" }, [
+                _vm._v(_vm._s(_vm.message)),
+              ]),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "div-block-17" }),
+            _vm._v(" "),
+            _c("div", { staticClass: "div-block-20" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "button-3-copy w-button",
+                  on: { click: _vm.close },
+                },
+                [_vm._v("Confirm")]
+              ),
+            ]),
+          ]),
+        ])
       : _vm._e(),
   ])
 }

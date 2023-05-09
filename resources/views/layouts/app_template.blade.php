@@ -64,8 +64,11 @@
                 @else
                     <div class="card">
                         <div class="div-block">
-                            <img src="{{ auth()->user()->avatar_url }}" loading="lazy" width="65" sizes="65px" alt="" class="image">
-                            <div><strong>LV1</strong>{{ auth()->user()->name }}</div>
+                            <img src="{{ auth()->user()->avatar_url != null ? auth()->user()->avatar_url : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWZmD0OAk5mVwFPkSGu3klSYjR3YKbq0jKsIJRRZM&s' }}" loading="lazy" width="65" sizes="65px" alt="" class="image">
+                            <div>
+{{--                                <strong>LV1</strong>--}}
+                                {{ auth()->user()->name }}
+                            </div>
                             <a class="button w-button" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

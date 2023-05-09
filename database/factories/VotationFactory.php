@@ -14,7 +14,7 @@ class VotationFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence,
+            'title' => $this->faker->name,
             'description' => $this->faker->paragraph,
             'color' => $this->faker->hexColor,
             'end_date' => $this->faker->dateTimeBetween('+2 months', '+3 months'),

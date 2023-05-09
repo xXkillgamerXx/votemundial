@@ -19,6 +19,7 @@ class CreateVotingOptionsTable extends Migration
             $table->string('name');
             $table->text('photo');
             $table->text('cover_photo');
+            $table->string('bank');
             $table->timestamps();
         });
     }

@@ -76,7 +76,6 @@
             </div>
             <div>
                 @foreach($votation->options as  $index => $option)
-
                     <div class="div-block-8">
                         <div class="div-block-10">
                             <div class="text-block-7"> {{ $index + 1 }}</div>
@@ -85,7 +84,7 @@
                                     <img src="{{ $option->photo }}" loading="lazy" width="78" alt="">
                                 </div>
                                 <div class="div-block-13">
-                                    <div class="text-block-8"><strong>{{ $option->name }} </strong><em class="italic-text">BTS</em><strong> </strong></div>
+                                    <div class="text-block-8"><strong>{{ $option->name }} </strong><em class="italic-text">{{ $option->bank }}</em><strong> </strong></div>
                                     <div class="div-block-11">
                                         <div class="div-block-12" style="width: {{  $votation->options[0]->likes_count != 0 ? (($option->likes_count / $votation->options[0]->likes_count)  * 100) : 0 }}%"></div>
                                     </div>

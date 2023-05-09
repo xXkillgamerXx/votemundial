@@ -35,6 +35,17 @@
                 </div>
             </div>
         </div>
+        <div v-if="showVoting" class="modal-confirm">
+            <div class="div-block-15">
+                <div>
+                    <div class="text-block-11">{{ message }}</div>
+                </div>
+                <div class="div-block-17"></div>
+                <div class="div-block-20">
+                    <button @click="close" class="button-3-copy w-button">Confirm</button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -53,6 +64,8 @@ export default {
         return {
             option : null,
             show : false,
+            showVoting : false,
+            message: '',
             isLogin : false,
             position : 0,
         }
@@ -67,6 +80,8 @@ export default {
                 })
                 .catch(error => {
                     console.error(error);
+                    this.showVoting = true;
+                    this.message = 'Ya has votado por esta opción.';
                 });
         },
         handleLike(data, position) {
@@ -77,6 +92,10 @@ export default {
             }else{
                 this.isLogin = true;
             }
+        },
+        close (){
+            this.show = false;
+            this.showVoting = false;
         }
     }
 }

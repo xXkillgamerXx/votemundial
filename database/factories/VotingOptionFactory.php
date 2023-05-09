@@ -18,8 +18,9 @@ class VotingOptionFactory extends Factory
             'votation_id' => function () {
                 return $this->factory(Votation::class)->create()->id;
             },
-            'name' => $this->faker->word,
+            'name' => $this->faker->name,
             'photo' => 'https://i.pravatar.cc/150?img='. $this->faker->numberBetween(1,60),
+            'bank' => $this->faker->word,
             'cover_photo' => 'https://source.unsplash.com/random/1300x800/?img='. $this->faker->numberBetween(1,60),
         ];
     }
