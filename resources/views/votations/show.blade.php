@@ -100,5 +100,5 @@
 @endsection
 
 @section('modal')
-    <likes :auth="{{ auth()->user() ? 1 : 0 }}" ref="likes"></likes>
+    <likes :votation_id="{{ $votation->id }}" :auth="{{ auth()->user() ? 1 : 0 }}" ref="likes"></likes>
 @endsection

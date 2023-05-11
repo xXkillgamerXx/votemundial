@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\User;
+use App\Models\Votation;
 use App\Models\VotingOption;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -16,6 +17,9 @@ class VoteFactory extends Factory
     public function definition()
     {
         return [
+            'voting_id_id' => function () {
+                return $this->factory(Votation::class)->create()->id;
+            },
             'voting_option_id' => function () {
                 return $this->factory(VotingOption::class)->create()->id;
             },

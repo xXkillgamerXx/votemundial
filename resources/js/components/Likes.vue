@@ -51,10 +51,11 @@
 
 <script>
 
-import {eventBus} from "../app";
+import { eventBus } from "../app";
 
 export default {
     props : {
+        votation_id : Number,
         auth : Number
     },
     created() {
@@ -73,7 +74,7 @@ export default {
     methods : {
         like (){
             console.log('like');
-            axios.post('/votations/like/' + this.option.id)
+            axios.post('/votations/like/' + this.option.id, { votation_id  : this.votation_id})
                 .then(response => {
                     console.log(response.data);
                     location.reload();
@@ -81,10 +82,11 @@ export default {
                 .catch(error => {
                     console.error(error);
                     this.showVoting = true;
-                    this.message = 'Ya has votado por esta opción.';
+                    this.message = 'Ya has votado.';
                 });
         },
-        handleLike(data, position) {
+        handleLike(data, position)
+        {
             if(this.auth === 1) {
                 this.option = data;
                 this.show = true;

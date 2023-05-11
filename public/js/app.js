@@ -5406,6 +5406,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
+    votation_id: Number,
     auth: Number
   },
   created: function created() {
@@ -5425,13 +5426,15 @@ __webpack_require__.r(__webpack_exports__);
     like: function like() {
       var _this = this;
       console.log('like');
-      axios.post('/votations/like/' + this.option.id).then(function (response) {
+      axios.post('/votations/like/' + this.option.id, {
+        votation_id: this.votation_id
+      }).then(function (response) {
         console.log(response.data);
         location.reload();
       })["catch"](function (error) {
         console.error(error);
         _this.showVoting = true;
-        _this.message = 'Ya has votado por esta opción.';
+        _this.message = 'Ya has votado.';
       });
     },
     handleLike: function handleLike(data, position) {
